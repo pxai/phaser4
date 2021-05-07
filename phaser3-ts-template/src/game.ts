@@ -1,35 +1,7 @@
 import 'phaser';
+import config from './config';
 
-export default class Demo extends Phaser.Scene
-{
-    constructor ()
-    {
-        super('demo');
-    }
+window.addEventListener('load', ()=> {
+    const game = new Phaser.Game(config);
+});
 
-    init () {
-        console.log("Before preload");
-    }
-
-    preload ()
-    {
-        this.load.image('logo', 'assets/phaser3-logo.png');
-    }
-
-    create ()
-    {
-        console.log("Yea");
-
-        const logo = this.add.image(400, 70, 'logo');
-    }
-}
-
-const config = {
-    type: Phaser.AUTO,
-    backgroundColor: '#125555',
-    width: 800,
-    height: 600,
-    scene: Demo
-};
-
-const game = new Phaser.Game(config);
