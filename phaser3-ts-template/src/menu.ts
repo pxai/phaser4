@@ -29,6 +29,8 @@ export default class Menu extends Phaser.Scene {
     changeScene(playText: Phaser.GameObjects.Text, scene: string) {
         playText.on('pointerdown', () => {
             this.scene.start(scene);
+            this.scene.start('Hud');
+            this.scene.bringToTop('Hud');
         });
     }
 }
