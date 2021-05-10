@@ -1,3 +1,5 @@
+import { EVENTS, SCENES } from './constants';
+
 export default class Menu extends Phaser.Scene {
     private width: number;
     private height: number;
@@ -21,7 +23,7 @@ export default class Menu extends Phaser.Scene {
             this.height/2, 
             'JUGAR', 
             {fontSize:'32px', color:'#FFFFFF'}).setInteractive();
-        this.changeScene(playText, 'Scene1');
+        this.changeScene(playText, SCENES.SCENE1);
 
     }
     
@@ -29,8 +31,8 @@ export default class Menu extends Phaser.Scene {
     changeScene(playText: Phaser.GameObjects.Text, scene: string) {
         playText.on('pointerdown', () => {
             this.scene.start(scene);
-            this.scene.start('Hud');
-            this.scene.bringToTop('Hud');
+            this.scene.start(SCENES.HUD);
+            this.scene.bringToTop(SCENES.HUD);
         });
     }
 }

@@ -1,3 +1,5 @@
+import { EVENTS, SCENES } from './constants';
+
 export default class Hud extends Phaser.Scene {
     private pointsTxt : Phaser.GameObjects.Text;
 
@@ -6,8 +8,8 @@ export default class Hud extends Phaser.Scene {
     }
 
     create(): void{
-        const scene1: Phaser.Scene = this.scene.get('Scene1');
-        scene1.events.on('updatePoints', this.updatePoints, this);
+        const scene1: Phaser.Scene = this.scene.get(SCENES.SCENE1);
+        scene1.events.on(EVENTS.UPDATE_POINTS, this.updatePoints, this);
 
         this.pointsTxt = this.add.text(20,20, '0', {fontSize:'32px', color:'#FFFFFF'});
     }
