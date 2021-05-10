@@ -13,7 +13,7 @@ export default class Hud extends Phaser.Scene {
     }
 
     private updatePoints(): void{
-        this.pointsTxt.text = "Points:" + this.registry.get('points');
+        this.pointsTxt.text = Phaser.Utils.String.Pad(this.registry.get('points'), 5, '0', 1);
     }
 
 }
