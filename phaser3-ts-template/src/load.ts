@@ -24,6 +24,10 @@ export default class Load extends Phaser.Scene {
             this
         );
 
+        //Mapas
+        this.load.tilemapTiledJSON('scene1', 'assets/scene1.json');
+        this.load.image('tileset', 'assets/tileset.png');
+
         //Listener cuando se hayan cargado todos los Assets  
         this.load.on(
             'complete',
@@ -32,7 +36,8 @@ export default class Load extends Phaser.Scene {
             },
             this
         );
-        for (let i=1;i<=1000;i++) this.load.image('logo' + i, 'assets/phaser3-logo.png'); 
+        this.load.image('logo', 'assets/phaser3-logo.png');      
+
     }
 
     private createBars(): void {

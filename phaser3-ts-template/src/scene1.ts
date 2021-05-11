@@ -4,6 +4,10 @@ export default class Scene1 extends Phaser.Scene
     private height: number;
     private points: number;
 
+    private tileMap : Phaser.Tilemaps.Tilemap;
+    private tileSet: Phaser.Tilemaps.Tileset;
+    private tileMapLayer: Phaser.Tilemaps.TilemapLayer; 
+
     constructor ()
     {
         super('Scene1');
@@ -35,5 +39,12 @@ export default class Scene1 extends Phaser.Scene
             this.registry.set('points', this.points);
             this.events.emit('updatePoints');
         });
+
+        this.tileMap = this.make.tilemap({ key: 'scene1' , tileWidth: 16, tileHeight: 16 });
+        
+        this.tileSet = this.tileMap.addTilesetImage('tileset');
+        
+        this.tileMapLayer = this.tileMap.createLayer('Scene1Layer', this.tileSet);
+       
     }
 }
