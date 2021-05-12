@@ -1,3 +1,5 @@
+import { LEVELS } from './constants';
+
 export default class Load extends Phaser.Scene {
     private loadBar : Phaser.GameObjects.Graphics;
     private progressBar : Phaser.GameObjects.Graphics;
@@ -25,8 +27,8 @@ export default class Load extends Phaser.Scene {
         );
 
         //Mapas
-        this.load.tilemapTiledJSON('scene1', 'assets/scene1.json');
-        this.load.image('tileset', 'assets/tileset.png');
+        this.load.tilemapTiledJSON(LEVELS.SCENE1.TILEMAPJSON, 'assets/scene1.json');
+        this.load.image(LEVELS.TILESET, 'assets/tileset.png');
 
         //Listener cuando se hayan cargado todos los Assets  
         this.load.on(

@@ -1,3 +1,5 @@
+import { LEVELS, SCENES } from './constants';
+
 export default class Scene1 extends Phaser.Scene
 {
     private width: number;
@@ -40,11 +42,11 @@ export default class Scene1 extends Phaser.Scene
             this.events.emit('updatePoints');
         });
 
-        this.tileMap = this.make.tilemap({ key: 'scene1' , tileWidth: 16, tileHeight: 16 });
+        this.tileMap = this.make.tilemap({ key: LEVELS.SCENE1.TILEMAPJSON , tileWidth: 16, tileHeight: 16 });
         
-        this.tileSet = this.tileMap.addTilesetImage('tileset');
+        this.tileSet = this.tileMap.addTilesetImage(LEVELS.TILESET);
         
-        this.tileMapLayer = this.tileMap.createLayer('Scene1Layer', this.tileSet);
+        this.tileMapLayer = this.tileMap.createLayer(LEVELS.SCENE1.LAYER, this.tileSet);
        
     }
 }
