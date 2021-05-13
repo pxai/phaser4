@@ -9,6 +9,7 @@ export default class Scene1 extends Phaser.Scene
     private tileMap : Phaser.Tilemaps.Tilemap;
     private tileSet: Phaser.Tilemaps.Tileset;
     private tileMapLayer: Phaser.Tilemaps.TilemapLayer; 
+    private background: Phaser.GameObjects.TileSprite;
 
     constructor ()
     {
@@ -47,6 +48,15 @@ export default class Scene1 extends Phaser.Scene
         this.tileSet = this.tileMap.addTilesetImage(LEVELS.TILESET);
         
         this.tileMapLayer = this.tileMap.createLayer(LEVELS.SCENE1.LAYER, this.tileSet);
-       
+        this.background = this
+            .add
+            .tileSprite(0,0,this.tileMap.widthInPixels, this.tileMap.heightInPixels, LEVELS.SCENE1.BACKGROUND)
+            .setOrigin(0,0).setDepth(-1);
+
+    }
+
+    public update (): void {
+        this.background.tilePositionY -= 0.4;
+        this.background.tilePositionX += 0.4;
     }
 }

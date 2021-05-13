@@ -30,7 +30,9 @@ export default class Load extends Phaser.Scene {
         this.load.tilemapTiledJSON(LEVELS.SCENE1.TILEMAPJSON, 'assets/scene1.json');
         this.load.image(LEVELS.TILESET, 'assets/tileset.png');
 
-        //Listener cuando se hayan cargado todos los Assets  
+
+        this.load.image(LEVELS.SCENE1.BACKGROUND, 'assets/Background/Green.png');
+
         this.load.on(
             'complete',
             function () {

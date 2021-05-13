@@ -8,7 +8,8 @@ const SCENES = {
 const LEVELS = {
     SCENE1:{
         TILEMAPJSON: 'scene1',
-        LAYER: 'Scene1Layer'
+        LAYER: 'Scene1Layer',
+        BACKGROUND: 'scene1Background'
     },
     TILESET:'tileset'
 }
