@@ -24,6 +24,8 @@ export default class Menu extends Phaser.Scene {
             'JUGAR', 
             {fontSize:'32px', color:'#FFFFFF'}).setInteractive();
         this.changeScene(playText, SCENES.SCENE1);
+        const jugarTxt: Phaser.GameObjects.BitmapText = this.add.bitmapText(50, this.height/2, 'pixelFont', "PRESS TO START", 25)
+        .setInteractive();
 
     }
     

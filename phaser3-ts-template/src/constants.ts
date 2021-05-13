@@ -18,4 +18,11 @@ const EVENTS = {
     UPDATE_POINTS: 'update_points'
 };
 
-export { SCENES, LEVELS, EVENTS };
+const FONTS = {
+    FONT: {
+        IMAGE: 'fontImage',
+        JSON: 'fontJSON'
+    }
+}
+
+export { SCENES, LEVELS, EVENTS, FONTS };

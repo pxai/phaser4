@@ -8,5 +8,6 @@ export default {
     backgroundColor: '#125555',
     width: 800,
     height: 600,
-    scene: [Load, Menu, Scene1, Hud]
+    scene: [Load, Menu, Scene1, Hud],
+    pixelArt: true
 };
