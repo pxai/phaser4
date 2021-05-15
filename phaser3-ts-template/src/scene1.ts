@@ -74,7 +74,7 @@ export default class Scene1 extends Phaser.Scene
 
         this.anims.create({
             key: PLAYER.ANIM.RUN, 
-            frames: this.anims.generateFrameNames(PLAYER.ANIM.IDLE,{
+            frames: this.anims.generateFrameNames(PLAYER.ID,{
                 prefix:PLAYER.ANIM.RUN + '-',
                 end:11 
             }), 
@@ -101,14 +101,14 @@ export default class Scene1 extends Phaser.Scene
          //Control de Movimiento
          if (this.wasdKeys.A.isDown || this.cursorKeys.left.isDown){
             this.player.setVelocityX(-200);
-            if(this.player.body.blocked.down) this.player.anims.play(PLAYER.ANIM.RUN, true);
+            if(this.player.body.blocked.down) { this.player.anims.play(PLAYER.ANIM.RUN, true); }
             this.player.flipX = true; 
         }else if (this.wasdKeys.D.isDown || this.cursorKeys.right.isDown){
             this.player.setVelocityX(200);
             if(this.player.body.blocked.down) this.player.anims.play(PLAYER.ANIM.RUN, true);
             this.player.flipX = false; 
 
-        }else {
+        } else {
             this.player.setVelocityX(0);
             this.player.anims.play(PLAYER.ANIM.IDLE, true);
         }
