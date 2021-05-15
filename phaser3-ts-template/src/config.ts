@@ -9,5 +9,12 @@ export default {
     width: 800,
     height: 600,
     scene: [Load, Menu, Scene1, Hud],
-    pixelArt: true
+    pixelArt: true,    
+    physics: {
+        default: 'arcade',
+        arcade: {
+            gravity: { y: 600 },
+            debug: true
+        }
+    }
 };

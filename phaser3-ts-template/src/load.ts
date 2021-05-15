@@ -1,4 +1,4 @@
-import { LEVELS, FONTS } from './constants';
+import { LEVELS, FONTS, PLAYER } from './constants';
 
 export default class Load extends Phaser.Scene {
     private loadBar : Phaser.GameObjects.Graphics;
@@ -44,6 +44,8 @@ export default class Load extends Phaser.Scene {
         this.load.image('logo', 'assets/phaser3-logo.png');      
 
         this.load.bitmapFont("pixelFont", "assets/fonts/font.png", "assets/fonts/font.xml");
+
+        this.load.atlas(PLAYER.ID, 'assets/images/player/ninjafrog.png', 'assets/images/player/ninjafrog.json');
     }
 
     private createBars(): void {

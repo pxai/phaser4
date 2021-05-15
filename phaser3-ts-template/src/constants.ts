@@ -18,6 +18,15 @@ const EVENTS = {
     UPDATE_POINTS: 'update_points'
 };
 
+const PLAYER = {
+    ID: 'jugadorAtlas',
+    ANIM:{
+        IDLE: 'idle',
+        RUN: 'run',
+        JUMP: 'jump-0'
+    }
+};
+
 const FONTS = {
     FONT: {
         IMAGE: 'fontImage',
@@ -25,4 +34,4 @@ const FONTS = {
     }
 }
 
-export { SCENES, LEVELS, EVENTS, FONTS };
+export { SCENES, LEVELS, EVENTS, FONTS, PLAYER };
