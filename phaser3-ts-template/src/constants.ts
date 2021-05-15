@@ -34,4 +34,12 @@ const FONTS = {
     }
 }
 
-export { SCENES, LEVELS, EVENTS, FONTS, PLAYER };
+const OBJECTS = {
+    BOX: 'box'
+};
+
+const ENEMIES = {
+    STRAWBERRY: 'strawberry'
+};
+
+export { SCENES, LEVELS, EVENTS, FONTS, PLAYER, OBJECTS, ENEMIES };

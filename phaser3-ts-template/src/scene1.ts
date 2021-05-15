@@ -1,4 +1,5 @@
-import { LEVELS, SCENES, PLAYER } from './constants';
+import { LEVELS, SCENES, OBJECTS, PLAYER } from './constants';
+import Player from './player';
 
 export default class Scene1 extends Phaser.Scene
 {
@@ -55,7 +56,7 @@ export default class Scene1 extends Phaser.Scene
         this.tileSet = this.tileMap.addTilesetImage(LEVELS.TILESET);
         
         this.tileMapLayer = this.tileMap.createLayer(LEVELS.SCENE1.LAYER, this.tileSet);
-
+        this.physics.world.bounds.setTo(0, 0, this.tileMap.widthInPixels, this.tileMap.heightInPixels);
         this.tileMapLayer.setCollisionByExclusion([-1]);
 
         this.background = this
@@ -63,7 +64,6 @@ export default class Scene1 extends Phaser.Scene
             .tileSprite(0,0,this.tileMap.widthInPixels, this.tileMap.heightInPixels, LEVELS.SCENE1.BACKGROUND)
             .setOrigin(0,0).setDepth(-1);
     
-        //Animaciones
         this.anims.create({
             key: PLAYER.ANIM.IDLE,
             frames:this.anims.generateFrameNames (PLAYER.ID,{prefix: PLAYER.ANIM.IDLE + '-',
@@ -82,42 +82,26 @@ export default class Scene1 extends Phaser.Scene
             repeat: -1
         });
 
-        //Crear Jugador
-        this.player = this.physics.add.sprite(80,80, PLAYER.ID).play(PLAYER.ANIM.IDLE, true);
+        this.player = new Player({scene: this, x: 80, y: 80, texture: PLAYER.ID});         
+        this.cameras.main.startFollow(this.player); 
+        this.physics.add.collider(this.player, this.tileMapLayer);  
+        this.cameras.main.setBounds(0, 0, this.tileMap.widthInPixels, this.tileMap.heightInPixels);
 
-        this.player.body.setSize(20,30);
-
-        this.physics.add.collider(this.player, this.tileMapLayer); 
-
-        this.cursorKeys = this.input.keyboard.createCursorKeys();
-        this.wasdKeys = this.input.keyboard.addKeys('W, A, S, D');
-        this.spaceBar = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
+        let sampleObject: any = this.tileMap.createFromObjects("objectLayer", {name: "prize"})[0];                
+        this.physics.world.enable(sampleObject);
+        sampleObject.body.setAllowGravity(false);
+        sampleObject.setTexture(OBJECTS.BOX);
+        sampleObject.body.setSize(40,50);      
+        
+        //collisión para final del nivel
+        this.physics.add.collider(this.player, sampleObject, () => {            
+            console.log("EEEEND!");
+        });
     }
 
     public update (): void {
         this.background.tilePositionY -= 0.4;
         this.background.tilePositionX += 0.4;
-
-         //Control de Movimiento
-         if (this.wasdKeys.A.isDown || this.cursorKeys.left.isDown){
-            this.player.setVelocityX(-200);
-            if(this.player.body.blocked.down) { this.player.anims.play(PLAYER.ANIM.RUN, true); }
-            this.player.flipX = true; 
-        }else if (this.wasdKeys.D.isDown || this.cursorKeys.right.isDown){
-            this.player.setVelocityX(200);
-            if(this.player.body.blocked.down) this.player.anims.play(PLAYER.ANIM.RUN, true);
-            this.player.flipX = false; 
-
-        } else {
-            this.player.setVelocityX(0);
-            this.player.anims.play(PLAYER.ANIM.IDLE, true);
-        }
-
-        if ((this.spaceBar.isDown || this.wasdKeys.W.isDown || this.cursorKeys.up.isDown) && this.player.body.blocked.down){
-            this.player.setVelocityY(-300);
-            this.player.anims.stop();
-            this.player.setTexture(PLAYER.ID, PLAYER.ANIM.JUMP);
-        }
-
+        this.player.update();
     }
 }
